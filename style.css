@@ -1,0 +1,85 @@
+.container {
+	width:960px;
+	margin:0 auto;
+	margin-top:50px;
+}
+
+.player {
+	width:375px;
+	height:325px;
+	margin:0 auto;
+	margin-bottom: 25px;
+	background-color: #cccccc;
+	border-radius: 15px;
+	padding: 20px;
+}
+
+.player_name {
+	margin:0 auto;
+	height:15px;
+	font-size:22px;
+	line-height:15px;
+	text-align:center;
+}
+
+.card {
+	width:75px;
+	height:105px;
+	margin:25px;
+	display: inline-block;
+	border-radius: 5px;
+	text-align: center;
+	line-height: 105px;
+	font-size: 28px;
+}
+
+.card.clickable {
+	cursor:pointer;
+}
+
+.card.clickable:hover {
+	border: 5px solid #229966;
+	margin:20px;
+}
+
+.card.hidden {
+	background: url('cardBack.jpg');
+}
+
+.card.showing {
+	background-color: white;
+}
+
+.spades, .clubs {
+	color: black;
+}
+
+.diamonds, .hearts {
+	color: red;
+}
+.card.draw_empty {
+	font-size: 10px;
+	background-color: #eeeeee;
+}
+
+.draw_pile, .discard_pile {
+	width: 125px;
+	height: 155px;
+	background-color: #cccccc;
+	border-radius: 15px;
+}
+
+.game_alerts {
+	height:25px;
+	width:60%;
+	margin:0 auto;
+	padding:10px;
+	background-color: #229966;
+	text-align:center;
+	font-size: 26px;
+	line-height: 25px;
+	position:fixed;
+	top:0px;
+	left:20%;
+	right:20%;
+}
