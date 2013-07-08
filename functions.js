@@ -19,6 +19,13 @@ function gameAction(action, playerNumber, cardNumber) {
 	});
 }
 
+function resetBinds() {
+	$('body').off('click', '.card') ;
+	$('body').on('click', '.card', function() {
+		cardSwitch($(this));
+	});
+}
+
 function setClickableClass() {
 	$('html').find('.clickable').removeClass('.clickable');
 	$('.hidden').addClass('clickable');
@@ -34,14 +41,17 @@ function flipPlayerCard($card) {
 		if ($compareCard.attr('id') == $(this).attr('id')) {
 			var playerNumber = $(this).parent().index();
 			var cardNumber = $(this).index();
-			gameAction('flipPlayerCard', playerNumber, cardNumber);
+			if (turn == playerNumber-1) {
+				gameAction('flipPlayerCard', playerNumber, cardNumber);
+			}
+			else {
+				gameAlert('Sorry but it is '+playerNameTurn+"'s turn. Wait for your turn.");
+				resetBinds();
+			}
 		}
 		else {
 			gameAlert('');
-			$('body').off('click', '.card') 
-			$('body').on('click', '.card', function() {
-				cardSwitch($(this));
-			});
+			resetBinds();
 		}
 	});
 }
@@ -54,10 +64,7 @@ function flipDrawPileCard() {
 		}
 		else {
 			gameAlert('');
-			$('body').off('click', '.card') 
-			$('body').on('click', '.card', function() {
-				cardSwitch($(this));
-			});
+			resetBinds();
 		}
 	});
 }
@@ -79,10 +86,7 @@ function takeActionWithDrawPileCard() {
 		}
 		else {
 			gameAlert('');
-			$('body').off('click', '.card') 
-			$('body').on('click', '.card', function() {
-				cardSwitch($(this));
-			});
+			resetBinds();
 		}
 	});
 }
@@ -97,10 +101,7 @@ function takeDiscardPileCard() {
 		}
 		else {
 			gameAlert('');
-			$('body').off('click', '.card') 
-			$('body').on('click', '.card', function() {
-				cardSwitch($(this));
-			});
+			resetBinds();
 		}
 	});
 }
@@ -122,18 +123,18 @@ function cardSwitch($this) {
 }
 
 $(document).ready(function() {
-	if (gameError != '') {
+	if (typeof gameError !== 'undefined' && gameError != '') {
 		alert(gameError);
 	}
-	if (midAction == true) {
-			takeActionWithDrawPileCard();
-		}
-		else {
-			$('body').on('click', '.card', function() {
-				cardSwitch($(this));
-			});
-		}
-		setClickableClass();
+	if (typeof midAction !== 'undefined' && midAction) {
+		takeActionWithDrawPileCard();
+	}
+	else {
+		$('body').on('click', '.card', function() {
+			cardSwitch($(this));
+		});
+	}
+	setClickableClass();
 });
 
 

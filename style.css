@@ -31,6 +31,12 @@
 	text-align: center;
 	line-height: 105px;
 	font-size: 28px;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: moz-none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 .card.clickable {
