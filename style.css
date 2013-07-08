@@ -39,6 +39,10 @@
 	user-select: none;
 }
 
+.game_alerts.red {
+	background-color: #FF2200;
+}
+
 .card.clickable {
 	cursor:pointer;
 }

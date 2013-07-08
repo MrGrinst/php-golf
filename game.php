@@ -100,8 +100,6 @@ class Game {
 	}
 
 	function flipPlayerCard($playerNum, $cardNum) {
-		$cardNum--;
-		$playerNum--;
 		if ($playerNum == $this->turn) {
 			$this->players[$playerNum]['hand'][$cardNum][1] = 'showing';
 			$_SESSION['game']->nextTurn();
@@ -118,8 +116,6 @@ class Game {
 	}
 
 	function takeDrawPileCard($playerNum, $cardNum) {
-		$cardNum--;
-		$playerNum--;
 		if ($playerNum == $this->turn) {
 			$drawPileCard = array_pop($this->draw);
 			$drawPileCard = $this->showing($drawPileCard);
@@ -139,8 +135,6 @@ class Game {
 	}
 
 	function takeDiscardPileCard($playerNum, $cardNum) {
-		$cardNum--;
-		$playerNum--;
 		if ($playerNum == $this->turn) {
 			$discardPileCard = array_pop($this->discard);
 
@@ -167,29 +161,37 @@ class Game {
 	function printGameState() {
 		?>
 		<div class="turn"><?php echo "It is ".$_SESSION['game']->playerNameTurn()."'s turn."; ?></div>
-		<?php
-		foreach ($this->players as $player) {
-			?>
-			<div class="player">
-				<div class="player_name"><?php echo $player['name']; ?></div>
-				<?php 
-					foreach ($player['hand'] as $card) {
-						$this->printCard($card);
-					}
-				 ?>
-			</div>
+		<div class="allPlayers">
 			<?php
-		}
-		?>
-		<div class="draw_pile">
-			<?php 
-				$this->printDrawPile();
+			foreach ($this->players as $player) {
+				?>
+				<div class="player">
+					<div class="player_name"><?php echo $player['name']; ?></div>
+					<div class="allCards">
+						<?php 
+							foreach ($player['hand'] as $card) {
+								$this->printCard($card);
+							}
+						 ?>
+					 </div>
+				</div>
+				<?php
+			}
 			?>
 		</div>
+		<div class="draw_pile">
+			<div class="allCards">
+				<?php 
+					$this->printDrawPile();
+				?>
+			</div>
+		</div>
 		<div class="discard_pile">
-			<?php 
-				$this->printDiscardPile();
-			?>
+			<div class="allCards">
+				<?php 
+					$this->printDiscardPile();
+				?>
+			</div>
 		</div>
 		<?php
 	}
