@@ -72,7 +72,8 @@ function noCardsClicked() {
 }
 
 function setClickable(status) {
-	$('html').find('.clickable').removeClass('.clickable');
+
+	$('html').find('.clickable').removeClass('clickable');
 	
 	var $playerDrawDiscard = $('.card').not('.player .card').add('.player:eq('+turn+') .card');
 	var $clickableCards = $('.card').off('click');
@@ -105,8 +106,8 @@ function setClickable(status) {
 function flipPlayerCard(card) {
 	gameAlert('Click the card again if you would like to flip it.');
 	cardIsClicked(card);
-	$clickableCards = setClickable('flipPlayerCard');
-	$clickableCards.click(function() {
+	$clickable = setClickable('flipPlayerCard');
+	$clickable.click(function() {
 		if ($(this).hasClass('clicked')) {
 			playerNumber = $(this).parent().parent().index();
 			cardNumber = $(this).index();
@@ -143,8 +144,8 @@ function takeActionWithDrawPileCard() {
 function takeDiscardPileCard() {
 	gameAlert('Click the card you would like to swap out.');
 	$('.discard_pile .card').addClass('clicked');
-	$clickable = setClickable('discardPile');
-	$clickable.click(function() {
+	$clickableDiscard = setClickable('discardPile');
+	$clickableDiscard.click(function() {
 		if ($(this).parent().parent().hasClass('player')) {
 			playerNumber = $(this).parent().parent().index();
 			cardNumber = $(this).index();
